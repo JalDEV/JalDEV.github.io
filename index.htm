@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+	<title>JalDev |  Home</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/reset.css" media="all"> 
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="all"> 
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jquery.ui.js" type="text/javascript"></script>
+	<script src="js/jquery.tipTip.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="css/tipTip.css" media="all"> 
+	<script type="text/javascript" src="js/jquery.lightbox-0.5.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen">
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" type="text/css" href="css/ie.css" /> 
+	<![endif]-->
+	<script type="text/javascript">
+		$(function() {
+			var portfolio = new Array();
+			var pageHeight = $('body').height();;
+			$('#leftRuler').height(pageHeight);
+			
+			setInterval("$('#logoCursor').toggle()", 500);
+			$(".portfolioItem").tipTip({delay: 150, defaultPosition: "top", content: "Click for full size."});
+			
+			
+			$('.ants').each(function() {
+				$(this).wrapInner('<div class="main" />');
+				$(this).prepend('<div class="head"></div>');
+				$(this).append('<div class="foot"></div>');
+			});
+			$('.horizontal .ants').each(function() {
+				$(this).height($(this).parent().height());
+				$(this).children('.main').height($(this).parent().height() - 16);
+				$(this).children('.main').width($(this).width() - 16);
+			});
+			
+			$('.vertical .ants').each(function() {
+				$(this).width($(this).parent().width());
+				$(this).children('.main').width($(this).parent().width() - 6);
+				$(this).children('.main').height($(this).height() - 8);
+			});
+			
+			//Store Slide-Out's Starting Position
+			$(".portfolioItem").each(function() {
+				var portID = $(this).attr('id').substr($(this).attr('id').length - 1, 1);
+				var position = $(this).children('.overlay').position();
+				portfolio[portID] = {top: position.top, left: position.left};
+				
+			});
+			
+			//Slide-Out Details Box+
+			$('.portfolioItem').hover(
+				function(event) {
+					$(this).children('.overlay').animate({left: '8px', top: '8px'}, {queue: false, duration: 500});
+				},
+				function(event) {
+					var portID = $(this).attr('id').substr($(this).attr('id').length - 1, 1);
+					var position = $(this).position();
+					$(this).children('.overlay').animate({left: portfolio[portID].left, top: portfolio[portID].top}, {queue: false, duration: 500});
+				}
+			);
+			
+			$('#portfolio-1 a').lightBox();
+			$('#portfolio-2 a').lightBox();
+			$('#portfolio-3 a').lightBox();
+			$('#portfolio-4 a').lightBox();
+			$('#portfolio-5 a').lightBox();
+			$('#portfolio-6 a').lightBox();
+		});
+	</script>
+</head>
+<body>
+	<div class="guides">
+		<div class="ruler" id="topRuler"></div><div class="ruler" id="leftRuler" style="height: 1041px;"></div><div class="ruler" id="topLeftRuler"></div>
+		<div class="guideHor" style="top: 169px;"></div>
+		<div class="guideHor" style="top: 414px;"></div>
+		<div class="guideHor" style="top: 434px;"></div>
+		<div class="guideHor" style="top: 679px;"></div>
+		<div class="guideHor" style="top: 699px;"></div>
+		<div class="guideHor" style="top: 944px;"></div>
+	</div>
+	<div class="wrap">	
+		<div class="guideVert" style="left: -1px;"></div>
+		<div class="guideVert" style="left: 699px;"></div>
+		<div class="guideVert" style="left: 723px;"></div>
+		<div class="guideVert" style="left: 958px;"></div>
+		<header>
+			<div class="logo">
+				<a href="/"><img src="./images/logo.png" width="453" height="127" alt="JalDev"></a>
+				<div class="cursorBox" id="logoCursor" style="display: none;"></div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="/#">portfolio</a></li>
+					<li class="resume"><a href="/docs/resume.pdf">resume</a></li>
+				</ul>
+				<img src="./images/nav-circle.png" alt="You are here" style="position: absolute; z-index: 9; left: -18px; top: -15px;">
+			</nav>
+		</header>
+		
+		<div class="portfolio">
+			<article class="portfolioItem horizontal" id="portfolio-1">
+				<!--a class="overlay" title="TV Without Pity was a large project, with a tight deadline. Responsibilities included migrating millions of records into the new database structure, building out custom PHP modules to handle the dozens of different content types available to editors."-->
+				<a class="overlay no-hover" href="./images/twop-1.jpg">
+					<div class="ants overview" style="height: 213px;"><div class="head"></div><div class="main" style="height: 197px; width: 128px;">
+							<h2>Client</h2>
+							<span>NBC Universal</span>
+							<h2>Project</h2>
+							<span>TV Without Pity</span>
+							<h2>Services</h2>
+							<span>PHP/MySQL<br>Backend Development<br>Data Migration<br>Client Relations</span>
+					</div><div class="foot"></div></div>
+					<div class="thumbnail">
+						<img src="./images/twop-thumb-2.jpg" alt="TWOP">
+					</div>
+				</a>
+				<div class="gallery">
+					<a href="./images/twop-2.jpg" title="Show Page">TWOP 2</a>
+				</div>
+			</article>
+			
+			<article class="portfolioItem vertical" id="portfolio-2">
+				<a class="overlay no-hover" href="./images/lighthouse-1.jpg" style="left: 8px; top: 140px;">
+					<div class="ants overview" style="width: 188px;"><div class="head"></div><div class="main" style="width: 182px; height: 74px;">
+						<div class="twocol">
+							<div class="col">
+								<h2>Client</h2>
+								<span>NBC Universal</span>
+							</div>
+								<div class="col last">
+								<h2>Project</h2>
+								<span>Lighthouse</span>
+							</div>
+						</div>
+						<h2 style="margin-top: 0px;">Technology</h2>
+						<span>Angular - PHP - MySQL - Laravel</span>
+					</div><div class="foot"></div></div>
+					<div class="thumbnail">
+						<img src="./images/lighthouse-thumb-2.jpg" alt="Lighthouse">
+					</div>
+				</a>
+				<div class="gallery">
+					<a href="./images/lighthouse-2.jpg" title="Work Order Management">Lighthouse 2</a>
+					<a href="./images/lighthouse-3.jpg" title="Control Tower">Lighthouse 3</a>
+				</div>
+			</article>
+			
+			<article class="portfolioItem vertical" id="portfolio-3">
+				<a class="overlay no-hover" href="./images/hookingup-1.jpg">
+					<div class="ants overview" style="width: 188px;"><div class="head"></div><div class="main" style="width: 182px; height: 74px;">
+						<div class="twocol">
+							<div class="col">
+								<h2>Client</h2>
+								<span>HBO</span>
+							</div>
+							<div class="col last">
+								<h2>Project</h2>
+								<span>Hooking Up</span>
+							</div>
+						</div>			
+						<h2 style="margin-top: 0px;">Technology</h2>
+						<span>Social Networking Site</span>
+					</div><div class="foot"></div></div>
+					<div class="thumbnail">
+						<img src="./images/hookingup-thumb-2.jpg" alt="Hooking Up">
+					</div>
+				</a>
+				<div class="gallery">
+					<a href="./images/hookingup-2.jpg" title="User Profiles">Hooking Up 2</a>
+					<a href="./images/hookingup-3.jpg" title="Forums">Hooking Up 3</a>
+				</div>
+			</article>
+			
+			<article class="portfolioItem horizontal" id="portfolio-4">
+				<a class="overlay no-hover" href="./images/scifi-1.jpg" style="left: 294px; top: 8px;">
+					<div class="ants overview" style="height: 213px;"><div class="head"></div><div class="main" style="height: 197px; width: 128px;">
+						<h2>Client</h2>
+						<span>NBC Universal</span>
+						<h2>Project</h2>
+						<span>Sci Fi Channel</span>
+						<h2>Services</h2>
+						<span>PHP/MySQL<br>Backend Development<br>Data Migration<br>Client Relations</span>
+					</div><div class="foot"></div></div>
+					<div class="thumbnail">
+						<img src="./images/scifi-thumb-2.jpg" alt="Sci Fi">
+					</div>
+				</a>
+				<div class="gallery">
+					<a href="./images/scifi-2.jpg" title="What&#39;s On">What's On</a>
+					<a href="./images/scifi-3.jpg" title="News">News</a>
+				</div>
+			</article>
+			
+			<article class="portfolioItem vertical" id="portfolio-5" style="margin-bottom: 30px;">
+				<a class="overlay no-hover" href="./images/legobatman-1.jpg" style="left: 8px; top: 140px;">
+					<div class="ants overview" style="width: 268px;"><div class="head"></div><div class="main" style="width: 262px; height: 74px;">
+						<div class="twocol">
+							<div class="col">
+								<h2>Client</h2>
+								<span>Warner Bros</span>
+							</div>
+							<div class="col last">
+								<h2>Project</h2>
+								<span>Lego Batman Game</span>
+							</div>
+						</div>
+						<h2 style="margin-top: 0px;">Info</h2>
+						<span>Gold Addy &amp; Judge's Choice Award Winning</span>
+					</div><div class="foot"></div></div>
+					<div class="thumbnail">
+						<img src="./images/lego-thumb-2.jpg" alt="Lego">
+					</div>
+				</a>
+				<div class="gallery">
+					<a href="./images/legobatman-2.jpg" title="Physics engine with stackable Lego blocks">Lego Batman</a>
+					<a href="./images/legobatman-3.jpg" title="Desktop Widget">Lego Batman</a>
+					<a href="./images/legobatman-4.jpg" title="Character Popup">Lego Batman</a>
+				</div>
+				<img src="./images/300px.png" alt="300px" style="position: relative; left: 0; top: 250px;">
+			</article>
+			
+			<article class="portfolioItem horizontal" id="portfolio-6">
+				<a class="overlay no-hover" href="./images/dimensions-1.jpg">
+					<div class="ants overview" style="height: 213px;"><div class="head"></div><div class="main" style="height: 197px; width: 148px;">
+						<h2>Client</h2>
+						<span>Dimensions</span>
+						<h2>Project</h2>
+						<span>Adventure Portal</span>
+						<h2>Technology</h2>
+						<span>Angular <br>PHP <br>MySQL <br>Laravel</span>
+					</div><div class="foot"></div></div>
+					<div class="thumbnail">
+						<img src="./images/dimensions-thumb-2.jpg" alt="dimensions">
+					</div>
+				</a>
+				<div class="gallery">
+					<a href="./images/dimensions-2.jpg" title="Facebook App">Dimensions</a>
+					<a href="./images/dimensions-3.jpg" title="Facebook App">Dimensions</a>
+					<a href="./images/dimensions-4.jpg" title="Facebook App">Dimensions</a>
+				</div>
+			</article>
+			<div class="clear"></div>
+		</div>
+		<div class="infoBox">
+			<div class="info">
+				<h2>Name</h2>
+				<span>Jeff Losee</span>
+				<h2>E-Mail</h2>
+				<span>jeff.losee@gmail.com</span>
+				<h2>Phone</h2>
+			<span>801.872.3456</span>
+				<h2>About Me</h2>
+				<p>I have a passion for the web, emerging technologies, and understanding how things works. </p>
+				<p>I specialize in intuitive database driven web applications and sites, but also have experience working with e-commerce sites, and traditional CMS platforms.</p>
+				<h2>Past Work</h2>
+				<h3>Flash/Actionscript</h3>
+				<ul class="blogroll">
+					<li><a href="/lego.html" target="_blank">Lego Batman Game</a></li>
+					
+				</ul>
+				<h3>Magento eCommerce</h3>
+				<ul class="blogroll">
+				<li><a href="http://www.cannonsafe.com/" target="_blank">Cannon Safe</a></li>
+				<li><a href="http://www.cricut.com/" target="_blank">Cricut</a></li>
+				<li><a href="http://www.softwaremedia.com/" target="_blank">SoftwareMedia</a></li>
+				</ul>
+				<h3>Wordpress</h3>
+				<ul class="blogroll">
+					<li><a href="http://www.taylorandrew.com/" target="_blank">Taylor Andrew</a></li>
+					<li><a href="http://wadsdev.com/" target="_blank">Wadsworth Development</a></li>
+					<li><a href="https://www.firestarterseo.com/" target="_blank">Firestarter SEO</a></li>
+				</ul>
+				<h3>Custom/Other</h3>
+				<ul class="blogroll">
+					<li><a href="http://www.televisionwithoutpity.com/" target="_blank">Television Without Pity</a></li>
+					<li><a href="http://www.scifi.co.uk/" target="_blank">Scifi Channel UK</a></li>
+				</ul>
+			</div>
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+</html>
